@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+学生向け掲示板アプリ（MVP）
 
 ## Getting Started
 
-First, run the development server:
+### セットアップ
+
+- **環境変数**: `.env.example` を `.env.local` にコピーして、Clerkキーを設定
+- **起動**:
 
 ```bash
+npm i
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### ルーティング（現時点）
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **`/`**: ランディング
+- **`/sign-up`**: 大学ドメイン選択 → メールコード認証のカスタム登録
+- **`/sign-in`**: Clerk標準サインイン
+- **`/profile/setup`**: 認証後のプロフィール作成（次タスクでDB保存を実装）
+- **`/boards` `/circles` `/jobs`**: 画面の土台（次タスクでDB/APIと接続）
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 大学ドメイン
 
-## Learn More
+`src/lib/universities.ts` の `UNIVERSITIES` を編集して追加できます（後でDB化します）。
 
-To learn more about Next.js, take a look at the following resources:
+## Dev Notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Next.js(App Router, TypeScript) + Tailwind + shadcn/ui + Clerk を前提にしています。
