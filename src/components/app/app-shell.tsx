@@ -12,10 +12,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <div className="h-8 w-8 rounded-xl bg-blue-600" aria-hidden />
             <div className="leading-tight">
               <div className="text-sm font-semibold tracking-tight">
-                Campus Board
+               LETS
               </div>
               <div className="text-xs text-muted-foreground">
-                実名・大学認証ベース
+                大学生のための掲示板・サークル・チャットプラットフォーム
               </div>
             </div>
           </Link>
@@ -59,7 +59,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </main>
       <footer className="border-t bg-white">
         <div className="mx-auto w-full max-w-6xl px-4 py-6 text-xs text-muted-foreground sm:px-6">
-          © {new Date().getFullYear()} Campus Board
+          © {new Date().getFullYear()} LETS
         </div>
       </footer>
     </div>
