@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 
 import { sendCircleMessage } from "@/app/circles/actions";
-import { getSupabaseBrowser } from "@/lib/supabase-browser";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -26,30 +25,9 @@ export function CircleChat({
   circleId: string;
   initialMessages: CircleMessageVM[];
 }) {
-  const [messages, setMessages] = useState<CircleMessageVM[]>(initialMessages);
+  const [messages] = useState<CircleMessageVM[]>(initialMessages);
   const [body, setBody] = useState("");
   const [sending, setSending] = useState(false);
-
-  const supabase = useMemo(() => getSupabaseBrowser(), []);
-
-  useEffect(() => {
-    if (!supabase) return;
-    const channel = supabase
-      .channel(`circle:${circleId}`)
-      .on(
-        "postgres_changes",
-        { event: "INSERT", schema: "public", table: "CircleMessage", filter: `circleId=eq.${circleId}` },
-        () => {
-          // 簡易: 新規メッセージが来たらリロード（RLS/Select構成を崩さず安全に動く）
-          window.location.reload();
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, [circleId, supabase]);
 
   async function onSend() {
     if (!body.trim()) {
@@ -75,7 +53,7 @@ export function CircleChat({
         <CardHeader className="flex-row items-center justify-between">
           <CardTitle className="text-base">チャット</CardTitle>
           <Badge variant="secondary" className="bg-blue-50 text-blue-700">
-            {supabase ? "Realtime: ON" : "Realtime: OFF"}
+            Realtime: OFF
           </Badge>
         </CardHeader>
         <CardContent className="space-y-3">
