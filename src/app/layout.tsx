@@ -5,8 +5,8 @@ import { AppShell } from "@/components/app/app-shell";
 import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
-  title: "Campus Board",
-  description: "大学認証ベースの学生掲示板・サークル・チャット",
+  title: "LETS",
+  description: "大学生のための掲示板・サークル・チャットプラットフォーム",
 };
 
 export default function RootLayout({
@@ -18,7 +18,9 @@ export default function RootLayout({
     <html lang="ja" className="h-full antialiased">
       <body className="min-h-full flex flex-col">
         <ClerkProvider>
-          <AppShell>{children}</AppShell>
+          <AppShell>
+            {children}
+          </AppShell>
           <Toaster richColors />
         </ClerkProvider>
       </body>

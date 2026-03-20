@@ -54,10 +54,16 @@ export function ProfileForm({
     try {
       await upsertProfile(form);
     } catch (e: unknown) {
-      console.error(e);
-      toast.error("保存に失敗しました。DB設定を確認してください。");
-      setSubmitting(false);
-    }
+  const message = e instanceof Error ? e.message : String(e);
+
+  if (message.includes("NEXT_REDIRECT")) {
+    return;
+  }
+
+  console.error(e);
+  toast.error("保存に失敗しました。DB設定を確認してください。");
+  setSubmitting(false);
+}
   }
 
   return (
