@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { AppShell } from "@/components/app/app-shell";
 import { ClerkProvider } from "@clerk/nextjs";
+import { jaJP } from '@clerk/localizations'
 
 export const metadata: Metadata = {
   title: "LETS",
@@ -17,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="ja" className="h-full antialiased">
       <body className="min-h-full flex flex-col">
-        <ClerkProvider>
+        <ClerkProvider localization={jaJP}>
           <AppShell>
             {children}
           </AppShell>
